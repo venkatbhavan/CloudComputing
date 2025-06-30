@@ -43,7 +43,7 @@ sudo chown -R azureuser:azureuser /home/azureuser/fastapiapp
 # Install dependencies
 echo "Installing Python dependencies..."
 sudo -u azureuser pip3 install -r requirements.txt
-sudo -u azureuser pip3 install gunicorn
+sudo -u azureuser pip3 install gunicorn "uvicorn[standard]" python-dotenv
 
 # Verify environment variables
 echo "Checking environment variables..."
@@ -53,21 +53,21 @@ echo "BLOB_NAME: ${BLOB_NAME:-'Not set'}"
 
 # Create .env file
 echo "Creating .env file..."
-sudo -u azureuser cat <<EOF > .env
+sudo -u azureuser cat <<EOF > /home/azureuser/fastapiapp/.env
 CONNECTION_STRING=${CONNECTION_STRING}
 CONTAINER_NAME=${CONTAINER_NAME}
 BLOB_NAME=${BLOB_NAME}
 EOF
 
 # Set proper permissions
-sudo chown azureuser:azureuser .env
-sudo chmod 600 .env
+sudo chown azureuser:azureuser /home/azureuser/fastapiapp/.env
+sudo chmod 600 /home/azureuser/fastapiapp/.env
 
-# Create systemd service for the Flask app
+# Create systemd service for the FastAPI app
 echo "Creating systemd service..."
 sudo tee /etc/systemd/system/fastapiapp.service > /dev/null <<EOF
 [Unit]
-Description=Flask Application
+Description=FastAPI Application
 After=network.target
 
 [Service]
@@ -75,8 +75,8 @@ User=azureuser
 Group=azureuser
 WorkingDirectory=/home/azureuser/fastapiapp
 Environment=PATH=/home/azureuser/.local/bin:/usr/local/bin:/usr/bin:/bin
-EnvironmentFile=/home/azureuser/fastapiappapp/.env
-ExecStart=/usr/local/bin/gunicorn -w 2 -b 0.0.0.0:5000 fastapiapp:fastap
+EnvironmentFile=/home/azureuser/fastapiapp/.env
+ExecStart=/usr/local/bin/gunicorn -w 2 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:5000 main:app
 Restart=always
 RestartSec=10
 
@@ -85,14 +85,14 @@ WantedBy=multi-user.target
 EOF
 
 # Enable and start the service
-echo "Starting Flask application service..."
+echo "Starting FastAPI application service..."
 sudo systemctl daemon-reload
 sudo systemctl enable fastapiapp.service
 sudo systemctl start fastapiapp.service
 
 # Check service status
 sleep 5
-sudo systemctl status fastapiapp.service
+sudo systemctl status fastapiapp.service || true
 
 echo "Init script completed successfully at $(date)"
-echo "Flask app should be running on port 5000"
+echo "FastAPI app should be running on http://<server-ip>:5000"
