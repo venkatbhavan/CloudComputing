@@ -36,9 +36,9 @@ echo "Pip version: $(pip3 --version)"
 # Clone your GitHub repo
 echo "Cloning GitHub repository..."
 cd /home/azureuser
-sudo -u azureuser git clone https://github.com/Ceciliyasouce/CloudProject.git flaskapp
-cd flaskapp
-sudo chown -R azureuser:azureuser /home/azureuser/flaskapp
+sudo -u azureuser git clone https://github.com/venkatbhavan/CloudComputing.git fastapiapp
+cd fastapiapp
+sudo chown -R azureuser:azureuser /home/azureuser/fastapiapp
 
 # Install dependencies
 echo "Installing Python dependencies..."
@@ -65,7 +65,7 @@ sudo chmod 600 .env
 
 # Create systemd service for the Flask app
 echo "Creating systemd service..."
-sudo tee /etc/systemd/system/flaskapp.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/fastapiapp.service > /dev/null <<EOF
 [Unit]
 Description=Flask Application
 After=network.target
@@ -73,10 +73,10 @@ After=network.target
 [Service]
 User=azureuser
 Group=azureuser
-WorkingDirectory=/home/azureuser/flaskapp
+WorkingDirectory=/home/azureuser/fastapiapp
 Environment=PATH=/home/azureuser/.local/bin:/usr/local/bin:/usr/bin:/bin
-EnvironmentFile=/home/azureuser/flaskapp/.env
-ExecStart=/usr/local/bin/gunicorn -w 2 -b 0.0.0.0:5000 flaskapp:flaskapp
+EnvironmentFile=/home/azureuser/fastapiappapp/.env
+ExecStart=/usr/local/bin/gunicorn -w 2 -b 0.0.0.0:5000 fastapiapp:fastap
 Restart=always
 RestartSec=10
 
@@ -87,12 +87,12 @@ EOF
 # Enable and start the service
 echo "Starting Flask application service..."
 sudo systemctl daemon-reload
-sudo systemctl enable flaskapp.service
-sudo systemctl start flaskapp.service
+sudo systemctl enable fastapiapp.service
+sudo systemctl start fastapiapp.service
 
 # Check service status
 sleep 5
-sudo systemctl status flaskapp.service
+sudo systemctl status fastapiapp.service
 
 echo "Init script completed successfully at $(date)"
 echo "Flask app should be running on port 5000"
