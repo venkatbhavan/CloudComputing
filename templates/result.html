@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    {% if data %}
+        <h2>Result for Student ID {{ data.StudentID }}</h2>
+        <ul>
+            <li>DOB: {{ data.DOB }}</li>
+            <li>Subject1: {{ data.Subject1 }}</li>
+            <li>Subject2: {{ data.Subject2 }}</li>
+            <li>Subject3: {{ data.Subject3 }}</li>
+            <li>Subject4: {{ data.Subject4 }}</li>
+            <li>Total: {{ data.Total }}</li>
+            <li>Result: {{ data.Result }}</li>
+        </ul>
+    {% else %}
+        <h3>{{ error }}</h3>
+    {% endif %}
+    <a href="/">Go back</a>
+</body>
+</html>
