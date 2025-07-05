@@ -44,5 +44,5 @@ async def fetch_student_data(request: Request, student_id: int = Form(...), dob:
 if __name__ == "__main__":
     import uvicorn
     print("App is running at http://127.0.0.1:8000 🚀")
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=False)
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
