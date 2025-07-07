@@ -1,23 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Result</title>
+  <meta charset="UTF-8" />
+  <title>Student Result</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .result-card {
+      background-color: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      background-color: #f2f2f2;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    li strong {
+      color: #222;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      background-color: #ff6b6b;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #ff4d4d;
+    }
+  </style>
 </head>
 <body>
+  <div class="result-card">
     {% if data %}
-        <h2>Result for Student ID {{ data.StudentID }}</h2>
-        <ul>
-            <li>DOB: {{ data.DOB }}</li>
-            <li>Subject1: {{ data.Subject1 }}</li>
-            <li>Subject2: {{ data.Subject2 }}</li>
-            <li>Subject3: {{ data.Subject3 }}</li>
-            <li>Subject4: {{ data.Subject4 }}</li>
-            <li>Total: {{ data.Total }}</li>
-            <li>Result: {{ data.Result }}</li>
-        </ul>
+      <h2>Result for Student ID {{ data.StudentID }}</h2>
+      <ul>
+        <li><strong>DOB:</strong> {{ data.DOB }}</li>
+        <li><strong>Cloud Computing:</strong> {{ data.CloudComputing }}</li>
+        <li><strong>Big Data:</strong> {{ data.BigData }}</li>
+        <li><strong>Data Science:</strong> {{ data.DataScience }}</li>
+        <li><strong>AI:</strong> {{ data.AI }}</li>
+        <li><strong>Total:</strong> {{ data.Total }}</li>
+        <li><strong>Result:</strong> {{ data.Result }}</li>
+      </ul>
     {% else %}
-        <h3>{{ error }}</h3>
+      <h3>{{ error }}</h3>
     {% endif %}
-    <a href="/">Go back</a>
+    <a href="/">🔙 Go Back</a>
+  </div>
 </body>
 </html>
