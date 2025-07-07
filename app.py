@@ -21,7 +21,16 @@ def fetch_csv_from_blob():
     blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
     blob_client = blob_service_client.get_blob_client(container=CONTAINER_NAME, blob=BLOB_NAME)
     blob_data = blob_client.download_blob()
-    return pd.read_csv(io.BytesIO(blob_data.readall()))
+   df = pd.read_csv(io.BytesIO(blob_data.readall()))
+    #  Clean up column names
+    df.columns = df.columns.str.strip()
+    df.rename(columns={
+        "Bid Data": "BigData",
+        "Cloud Computing": "CloudComputing",
+        "Programming paradigms": "DataScience",
+        "Reconfigurable computing": "AI"
+    }, inplace=True)
+    return df
 
 @app.get("/", response_class=HTMLResponse)
 async def form_get(request: Request):
@@ -43,6 +52,6 @@ async def fetch_student_data(request: Request, student_id: int = Form(...), dob:
 
 if __name__ == "__main__":
     import uvicorn
-    print("App is running at http://127.0.0.1:8000 🚀")
+    print("App is running ")
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
