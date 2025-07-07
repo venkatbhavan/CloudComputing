@@ -1,16 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Result Lookup</title>
+  <meta charset="UTF-8" />
+  <title>Student Result Lookup</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background-color: white;
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4e54c8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2b2e9e;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h2>Enter Student Details</h2>
+  <div class="form-container">
+    <h2>Student Result Lookup</h2>
     <form action="/result" method="post">
-        <label>Student ID:</label><br>
-        <input type="number" name="student_id" required><br><br>
-        <label>Date of Birth (YYYY-MM-DD):</label><br>
-        <input type="date" name="dob" required><br><br>
-        <button type="submit">Submit</button>
+      <label for="student_id">Student ID</label>
+      <input type="number" id="student_id" name="student_id" required>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <button type="submit">View Result</button>
     </form>
+  </div>
 </body>
 </html>
