@@ -3,6 +3,11 @@
 This is a Flask web application that displays student marks based on an ID input. 
 The data is stored as a CSV file in **Azure Blob Storage** and retrieved dynamically by the app each time a request is made.
 
+Contributors :
+           **Sasi Varun Ramachandran- 1569230
+           Venkat Bhavan Tati- 1575011
+           Akshaya Singam- 1571633
+           Manesh kumar-1568486**
 ##  Demo
 
 🔗 [flaskmarksapp.azurewebsites.net](https://flaskmarksapp.azurewebsites.net)
