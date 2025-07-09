@@ -5,8 +5,8 @@ The data is stored as a CSV file in **Azure Blob Storage** and retrieved dynamic
 
 Contributors :  Group 3
 -  **Sasi Varun Ramachandran - 1569230**
--  **Venkat Bhavan Tati - 1575011**
--  **Akshaya Singam - 1571633**
+-  **Venkat Bhavan Tati - 1575011** (venkat-bhavan.tati@informatik.hs-fulda.de)
+-  **Akshaya Singam - 1571633**  (akshaya.singam@informatikhs-fulda.de)
 -  **Manesh kumar - 1568486**
           
 ##  Demo
