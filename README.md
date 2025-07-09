@@ -3,7 +3,7 @@
 This is a Flask web application that displays student marks based on an ID input. 
 The data is stored as a CSV file in **Azure Blob Storage** and retrieved dynamically by the app each time a request is made.
 
-Contributors :
+Contributors :  Group 3
 -  **Sasi Varun Ramachandran - 1569230**
 -  **Venkat Bhavan Tati - 1575011**
 -  **Akshaya Singam - 1571633**
@@ -25,7 +25,7 @@ Contributors :
 
 ---
 
-# Tech Stack
+## Tech Stack
 
 | Layer        | Service / Tool                  |
 |--------------|----------------------------------|
@@ -36,7 +36,7 @@ Contributors :
 
 ---
 
- # How we have created 
+ ## How we have created 
 
 - Created a azure blob storage and stored marks.csv.
 - Created a web application using Fast API and Python to fetch the marks using student id and DOB.
